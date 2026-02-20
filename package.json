@@ -1,0 +1,37 @@
+{
+  "name": "cournot-por-claude-skill",
+  "version": "1.0.0",
+  "description": "Claude Code skill for Cournot Proof-of-Reasoning (PoR) pipeline",
+  "type": "module",
+  "bin": {
+    "cournot-por": "./src/cli.ts"
+  },
+  "scripts": {
+    "resolve": "tsx src/cli.ts resolve",
+    "capabilities": "tsx src/cli.ts capabilities",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "cournot",
+    "proof-of-reasoning",
+    "por"
+  ]
+}
