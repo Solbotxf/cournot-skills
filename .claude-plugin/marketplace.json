@@ -1,8 +1,7 @@
 {
   "name": "cournot-skills",
   "owner": {
-    "name": "Solbotxf",
-    "url": "https://github.com/Solbotxf"
+    "name": "Solbotxf"
   },
   "metadata": {
     "description": "Cournot Proof-of-Reasoning skills for Claude Code",
@@ -11,11 +10,8 @@
   "plugins": [
     {
       "name": "cournot-por",
-      "source": "./",
-      "description": "Run the Cournot Proof-of-Reasoning (PoR) pipeline to resolve questions with evidence-backed, cryptographically-anchored judgments.",
-      "skills": [
-        "./skills/cournot-por"
-      ]
+      "source": "./plugins/cournot-por",
+      "description": "Run the Cournot Proof-of-Reasoning (PoR) pipeline to resolve questions with evidence-backed, cryptographically-anchored judgments."
     }
   ]
 }

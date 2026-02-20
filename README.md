@@ -18,23 +18,14 @@ The final output is a structured **PoR Report** with outcome, confidence, eviden
 
 ### As a Claude Code plugin (recommended)
 
-**Option A -- Load directly from a local clone:**
-
-```bash
-git clone https://github.com/Solbotxf/cournot-skills.git
-claude --plugin-dir ./cournot-skills
-```
-
-**Option B -- Add as a marketplace and install:**
-
-If this repo is registered as a marketplace, add it and install:
+**Option A -- Add as a marketplace and install:**
 
 ```
 /plugin marketplace add Solbotxf/cournot-skills
 /plugin install cournot-por@cournot-skills
 ```
 
-**Option C -- Team/project configuration:**
+**Option B -- Team/project configuration:**
 
 Add to your project's `.claude/settings.json` so all team members get the plugin:
 
@@ -54,11 +45,19 @@ Add to your project's `.claude/settings.json` so all team members get the plugin
 }
 ```
 
+**Option C -- Test locally from a clone:**
+
+```bash
+git clone https://github.com/Solbotxf/cournot-skills.git
+/plugin marketplace add ./cournot-skills
+/plugin install cournot-por@cournot-skills
+```
+
 ### As a standalone CLI
 
 ```bash
 git clone https://github.com/Solbotxf/cournot-skills.git
-cd cournot-skills
+cd cournot-skills/plugins/cournot-por
 npm install
 ```
 
@@ -85,6 +84,8 @@ Claude will ask for your access code if you haven't provided one, then run the p
 ### As a CLI
 
 ```bash
+cd plugins/cournot-por
+
 # Resolve a question
 npx tsx src/cli.ts resolve \
   --query "Will the US government shut down?" \
@@ -148,23 +149,30 @@ npx tsx src/cli.ts capabilities --code YOUR_CODE
 
 ```
 .claude-plugin/
-  plugin.json                 # Plugin manifest
-skills/
+  marketplace.json                  # Marketplace catalog
+plugins/
   cournot-por/
-    SKILL.md                  # Skill definition (loaded by Claude Code)
-src/
-  types.ts                    # TypeScript interfaces
-  schemas.ts                  # Zod validation schemas
-  client.ts                   # Gateway HTTP client (retry, backoff, redaction)
-  pipeline.ts                 # 5-step pipeline orchestrator
-  report.ts                   # Report builder + Markdown formatter
-  cli.ts                      # CLI entry point
-tests/                        # Vitest tests (30 passing)
+    .claude-plugin/
+      plugin.json                   # Plugin manifest
+    skills/
+      cournot-por/
+        SKILL.md                    # Skill definition (loaded by Claude Code)
+    src/
+      types.ts                      # TypeScript interfaces
+      schemas.ts                    # Zod validation schemas
+      client.ts                     # Gateway HTTP client (retry, backoff, redaction)
+      pipeline.ts                   # 5-step pipeline orchestrator
+      report.ts                     # Report builder + Markdown formatter
+      cli.ts                        # CLI entry point
+    tests/                          # Vitest tests (30 passing)
+    package.json
 ```
 
 ## Running tests
 
 ```bash
+cd plugins/cournot-por
+npm install
 npm test
 ```
 
