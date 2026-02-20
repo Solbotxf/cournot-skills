@@ -22,7 +22,7 @@ Add this repository as a skill source in your Claude Code project:
 
 ```bash
 # In your project directory
-claude mcp add-skill https://github.com/<owner>/cournot-por-claude-skill
+claude mcp add-skill https://github.com/Solbotxf/cournot-skills
 ```
 
 Or add it manually to your `.claude/settings.json`:
@@ -30,7 +30,7 @@ Or add it manually to your `.claude/settings.json`:
 ```json
 {
   "skills": [
-    "https://github.com/<owner>/cournot-por-claude-skill"
+    "https://github.com/Solbotxf/cournot-skills"
   ]
 }
 ```
@@ -38,8 +38,8 @@ Or add it manually to your `.claude/settings.json`:
 ### As a standalone CLI
 
 ```bash
-git clone https://github.com/<owner>/cournot-por-claude-skill.git
-cd cournot-por-claude-skill
+git clone https://github.com/Solbotxf/cournot-skills.git
+cd cournot-skills
 npm install
 ```
 
