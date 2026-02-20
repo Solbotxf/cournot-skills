@@ -1,6 +1,6 @@
-# cournot-por-claude-skill
+# cournot-por
 
-A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that runs the **Cournot Proof-of-Reasoning (PoR)** pipeline. Given a natural-language question (e.g. a prediction-market resolution query), this skill collects evidence, audits reasoning, renders a judgment, and produces a cryptographically-anchored PoR bundle -- all through a single conversational command.
+A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) plugin that runs the **Cournot Proof-of-Reasoning (PoR)** pipeline. Given a natural-language question (e.g. a prediction-market resolution query), this plugin collects evidence, audits reasoning, renders a judgment, and produces a cryptographically-anchored PoR bundle -- all through a single conversational command.
 
 ## What it does
 
@@ -16,22 +16,41 @@ The final output is a structured **PoR Report** with outcome, confidence, eviden
 
 ## Installation
 
-### As a Claude Code skill (recommended)
+### As a Claude Code plugin (recommended)
 
-Add this repository as a skill source in your Claude Code project:
+**Option A -- Load directly from a local clone:**
 
 ```bash
-# In your project directory
-claude mcp add-skill https://github.com/Solbotxf/cournot-skills
+git clone https://github.com/Solbotxf/cournot-skills.git
+claude --plugin-dir ./cournot-skills
 ```
 
-Or add it manually to your `.claude/settings.json`:
+**Option B -- Add as a marketplace and install:**
+
+If this repo is registered as a marketplace, add it and install:
+
+```
+/plugin marketplace add Solbotxf/cournot-skills
+/plugin install cournot-por@cournot-skills
+```
+
+**Option C -- Team/project configuration:**
+
+Add to your project's `.claude/settings.json` so all team members get the plugin:
 
 ```json
 {
-  "skills": [
-    "https://github.com/Solbotxf/cournot-skills"
-  ]
+  "extraKnownMarketplaces": {
+    "cournot-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Solbotxf/cournot-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "cournot-por@cournot-skills": true
+  }
 }
 ```
 
@@ -123,6 +142,24 @@ npx tsx src/cli.ts capabilities --code YOUR_CODE
 
 ---
 *Don't trust the output -- verify the evidence and reasoning.*
+```
+
+## Repo structure
+
+```
+.claude-plugin/
+  plugin.json                 # Plugin manifest
+skills/
+  cournot-por/
+    SKILL.md                  # Skill definition (loaded by Claude Code)
+src/
+  types.ts                    # TypeScript interfaces
+  schemas.ts                  # Zod validation schemas
+  client.ts                   # Gateway HTTP client (retry, backoff, redaction)
+  pipeline.ts                 # 5-step pipeline orchestrator
+  report.ts                   # Report builder + Markdown formatter
+  cli.ts                      # CLI entry point
+tests/                        # Vitest tests (30 passing)
 ```
 
 ## Running tests

@@ -5,6 +5,7 @@ description: >
   Cournot, or to resolve a prediction market. Runs the Cournot Proof-of-Reasoning
   pipeline and returns a structured PoR report with outcome, confidence, evidence,
   reasoning, and cryptographic roots.
+allowed-tools: Bash, Read
 ---
 
 # Cournot Proof-of-Reasoning (PoR) Skill
@@ -44,7 +45,7 @@ Collect these from the user (use defaults if not specified):
 
 ## Execution: Use the CLI Tool
 
-This skill ships with a TypeScript CLI. Run it from the skill's repo directory.
+This skill ships with a TypeScript CLI. Run it from the plugin's directory.
 
 ### por.resolve
 
