@@ -11,9 +11,11 @@
   "plugins": [
     {
       "name": "cournot-por",
-      "source": ".",
+      "source": "./",
       "description": "Run the Cournot Proof-of-Reasoning (PoR) pipeline to resolve questions with evidence-backed, cryptographically-anchored judgments.",
-      "version": "1.0.0"
+      "skills": [
+        "./skills/cournot-por"
+      ]
     }
   ]
 }
